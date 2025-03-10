@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #333; color: #fff; padding: 15px; text-align: center; }
+        .container { width: 80%; margin: auto; padding: 20px; }
+        .bike { border: 1px solid #ddd; padding: 10px; margin: 10px; text-align: center; }
+        .bike img { width: 100%; max-width: 300px; }
+        .cart { background: #f4f4f4; padding: 10px; margin-top: 20px; }
+        button { background: #28a745; color: white; padding: 10px; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Our Bike Store</h1>
+</header>
+
+<div class="container">
+    <h2>Our Bikes</h2>
+    <div id="bikes">
+        <div class="bike">
+            <img src="gt.jpeg">
+            <h3>Gt 650</h3>
+            <p>Price: 3.5L</p>
+            <button onclick="addToCart('Gt 650', 3.5L)">Add to Cart</button>
+        </div>
+        <div class="bike">
+            <img src="r15.jpeg">
+            <h3>Yamaha R15</h3>
+            <p>Price: 2L</p>
+            <button onclick="addToCart('Yamaha R15', 2L)">Add to Cart</button>
+        </div>
+    </div>
+
+    <h2>Shopping Cart</h2>
+    <div class="cart">
+        <ul id="cart-list"></ul>
+        <h3>Total: $<span id="total-price">0</span></h3>
+    </div>
+
+    <h2>Contact Us</h2>
+    <p>Email: contact@bikestore.com</p>
+    <p>Phone: +123 456 7890</p>
+</div>
+
+<script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        total += price;
+        updateCart();
+    }
+
+    function updateCart() {
+        let cartList = document.getElementById("cart-list");
+        let totalPrice = document.getElementById("total-price");
+        
+        cartList.innerHTML = "";
+        cart.forEach(item => {
+            let li = document.createElement("li");
+            li.textContent = `${item.name} - $${item.price}`;
+            cartList.appendChild(li);
+        });
+
+        totalPrice.textContent = total;
+    }
+</script>
+
+</body>
+</html>
